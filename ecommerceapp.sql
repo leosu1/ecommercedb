@@ -21,8 +21,9 @@ CREATE TABLE adresses (
 
 CREATE TABLE categories (
     category_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    name VARCHAR(50) NOT NULL,
     description VARCHAR(500),
-    products_in_category INT NOT NULL
+    products_in_category INT DEFAULT 0
 );
 
 CREATE TABLE products (
@@ -41,7 +42,7 @@ CREATE TABLE products (
 CREATE TABLE orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     from_user INT NOT NULL,
-    total_price FLOAT NOT NULL,
+    total_price FLOAT NOT NULL DEFAULT 0,
     created_at DATETIME NOT NULL,
     FOREIGN KEY (from_user) REFERENCES users (user_id)
 );
@@ -55,7 +56,7 @@ CREATE TABLE products_in_orders(
 CREATE TABLE carts (
     cart_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     belongs_to INT NOT NULL,
-    total_price FLOAT NOT NULL,
+    total_price FLOAT NOT NULL DEFAULT 0,
     created_at DATETIME NOT NULL,
     FOREIGN KEY (belongs_to) REFERENCES users (user_id)
 );
