@@ -7,6 +7,17 @@ INSERT INTO users (firstname, lastname, email_adress, phone_number, created_at)
     ('salut', 'lol', 'salol@outlook.fr', '123490876', NOW())
 ;
 
+INSERT INTO addresses (street_number, street, postal_code, city, country, user)
+    VALUES
+    (1, 'rue des plantes', 75006, 'paris', 'FRA', 1),
+    (28, 'rue des arbres', 75007, 'paris', 'FRA', 2),
+    (2, 'rue de la paix', 75008, 'paris', 'FRA', 2),
+    (230, 'rue de oui', 13000, 'marseille', 'FRA', 3),
+    (3, 'rue des plantes', 75006, 'paris', 'FRA', 4),
+    (5, 'rue des noms', 33000, 'bordeaux', 'FRA', 5),
+    (4, 'avenue des champs elysées', 75008, 'paris', 'FRA', 5)
+;
+
 INSERT INTO categories (name, description)
     VALUES
     ('vêtements', 'découvrez notre sélection de vêtements!'),
@@ -39,11 +50,11 @@ UPDATE categories
 SET products_in_category = (SELECT COUNT(name) FROM products WHERE category = 3)
 WHERE category_id = 3;
 
-INSERT INTO orders (from_user, created_at)
+INSERT INTO orders (from_user, to_address, created_at)
     VALUES
-    (1, NOW()),
-    (2, NOW()),
-    (5, NOW())
+    (1, 1, NOW()),
+    (2, 3, NOW()),
+    (5, 7, NOW())
 ;
 
 INSERT INTO products_in_orders (order_id, product_id)

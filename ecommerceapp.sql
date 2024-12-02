@@ -8,8 +8,8 @@ CREATE TABLE users (
     created_at DATETIME NOT NULL
 );
 
-CREATE TABLE adresses (
-    adress_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE addresses (
+    address_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     street_number INT NOT NULL,
     street VARCHAR(100) NOT NULL,
     postal_code VARCHAR(10) NOT NULL,
@@ -43,8 +43,10 @@ CREATE TABLE orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     from_user INT NOT NULL,
     total_price FLOAT NOT NULL DEFAULT 0,
+    to_address INT NOT NULL,
     created_at DATETIME NOT NULL,
-    FOREIGN KEY (from_user) REFERENCES users (user_id)
+    FOREIGN KEY (from_user) REFERENCES users (user_id),
+    FOREIGN KEY (to_address) REFERENCES addresses (address_id)
 );
 
 CREATE TABLE products_in_orders(
